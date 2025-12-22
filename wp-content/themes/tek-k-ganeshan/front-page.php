@@ -571,7 +571,10 @@ get_header(); ?>
             <h3>Head Office</h3>
             <p style="line-height: 20px;">Kyyba, Inc.<br />28230 Orchard Lake Rd, Suite 100<br />Farmington Hills, MI
               48334, USA</p>
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Head Office" class="office-img" />
+            <?php
+            $office_img = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'large') : 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80';
+            ?>
+            <img src="<?php echo esc_url($office_img); ?>" alt="Head Office" class="office-img" />
             <div class="list">
               <a href="tel:+18445559282" style="color: #fff;text-decoration: none;"><i data-lucide="phone"></i> (844)
                 Kyyba‑4‑U</a>
