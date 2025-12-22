@@ -29,7 +29,7 @@ while ( have_posts() ) :
                         echo '<p class="kicker" style="margin-bottom: 1rem;">' . esc_html( $categories[0]->name ) . '</p>';
                     }
                     ?>
-                    <h3 class="entry-title"><?php the_title(); ?></h1>
+                    <h3 class="entry-title"><?php the_title(); ?></h3>
                 </header>
 
                 <!-- Video Player -->
