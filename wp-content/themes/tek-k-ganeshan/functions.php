@@ -319,6 +319,56 @@ function tek_register_cpts() {
         'show_in_rest' => true,
     ));
 
+    // Register Award Categories
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => array(
+            'name'              => 'Award Categories',
+            'singular_name'     => 'Award Category',
+            'search_items'      => 'Search Categories',
+            'all_items'         => 'All Categories',
+            'parent_item'       => 'Parent Category',
+            'parent_item_colon' => 'Parent Category:',
+            'edit_item'         => 'Edit Category',
+            'update_item'       => 'Update Category',
+            'add_new_item'      => 'Add New Category',
+            'new_item_name'     => 'New Category Name',
+            'menu_name'         => 'Categories',
+        ),
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'award-category' ),
+        'show_in_rest'      => true, // Added this to match the original functionality
+    );
+    register_taxonomy( 'award_category', array( 'award' ), $args );
+
+    // Register Venture Custom Post Type
+    $venture_labels = array(
+        'name'               => 'Ventures',
+        'singular_name'      => 'Venture',
+        'menu_name'          => 'Ventures',
+        'add_new'            => 'Add New',
+        'add_new_item'       => 'Add New Venture',
+        'edit_item'          => 'Edit Venture',
+        'new_item'           => 'New Venture',
+        'view_item'          => 'View Venture',
+        'all_items'          => 'All Ventures',
+        'search_items'       => 'Search Ventures',
+        'not_found'          => 'No ventures found',
+        'not_found_in_trash' => 'No ventures found in Trash'
+    );
+    $venture_args = array(
+        'labels'              => $venture_labels,
+        'public'              => true,
+        'has_archive'         => false, // We display them on front-page usually, or a template
+        'menu_icon'           => 'dashicons-chart-line',
+        'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ), 
+        'show_in_rest'        => true, // Added this to match other CPTs
+        // We will use 'Thumbnail' for the Logo
+    );
+    register_post_type( 'venture', $venture_args );
+
     // Register Awards CPT
     register_post_type( 'award', array(
         'labels' => array(
@@ -490,6 +540,55 @@ if (!function_exists('tek_get_video_embed_url')) {
     }
 }
 
+// Seed Default Ventures
+function tek_seed_ventures() {
+    if ( get_option( 'tek_ventures_seeded' ) ) return;
+
+    $ventures = array(
+        array(
+            'title'   => 'Kyyba, Inc.',
+            'content' => 'Global technology services & staffing delivering at scale.',
+            'url'     => '#',
+            'image'   => 'https://placehold.co/100x100?text=Kyyba',
+        ),
+        array(
+            'title'   => 'Kyyba Films',
+            'content' => 'Independent films that champion underrepresented voices.',
+            'url'     => '#',
+            'image'   => 'https://placehold.co/100x100?text=Films',
+        ),
+        array(
+            'title'   => 'Kyyba Wellness',
+            'content' => 'Programs for leaders and teams to perform sustainably.',
+            'url'     => '#',
+            'image'   => 'https://placehold.co/100x100?text=Wellness',
+        ),
+    );
+
+    foreach ( $ventures as $v ) {
+        // Check if exists
+        $existing = get_page_by_title( $v['title'], OBJECT, 'venture' );
+        if ( ! $existing ) {
+            $post_id = wp_insert_post( array(
+                'post_title'   => $v['title'],
+                'post_excerpt' => $v['content'], // Using excerpt for value prop
+                'post_status'  => 'publish',
+                'post_type'    => 'venture',
+            ) );
+            
+            if ( $post_id ) {
+                update_post_meta( $post_id, '_venture_url', $v['url'] );
+                // Note: Sideloading images is complex in one-shot, so we just set the meta for now or skipped.
+                // For this demo, we can't easily upload the external image to media library without more logic.
+                // We will rely on user adding logos or use the placeholder if no featured image.
+            }
+        }
+    }
+
+    update_option( 'tek_ventures_seeded', true );
+}
+add_action( 'init', 'tek_seed_ventures' );
+
 // Helper function to get video thumbnail
 if (!function_exists('tek_get_video_thumbnail')) {
     function tek_get_video_thumbnail($url) {
@@ -505,15 +604,6 @@ if (!function_exists('tek_get_video_thumbnail')) {
         // YouTube Shorts
         if (preg_match('/youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/', $url, $match)) {
              return 'https://img.youtube.com/vi/' . $match[1] . '/maxresdefault.jpg';
-        }
-
-        // Vimeo (Requires API call usually, but we can try hash approach or fallback)
-        // Simple regex to get ID
-        if (preg_match('/vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/', $url, $match)) {
-            // Vimeo requires an API call to get the thumbnail properly. 
-            // For now, we return empty so the theme fallback (featured image or default) is used.
-            // Or we could implement a basic API fetch if desired, but keeping it simple for now.
-            return ''; 
         }
 
         return '';

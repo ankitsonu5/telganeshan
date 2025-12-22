@@ -213,72 +213,53 @@ get_header(); ?>
         </header>
         <div class="swiper ventures-slider">
           <div class="swiper-wrapper">
-            <!-- Card 1 -->
+            
+            <?php
+            $ventures_query = new WP_Query(array(
+                'post_type'      => 'venture',
+                'posts_per_page' => -1,
+                'orderby'        => 'date',
+                'order'          => 'ASC'
+            ));
+
+            if ($ventures_query->have_posts()) :
+                // Loop twice to ensure infinite scroll feels full if few items
+                for ($i = 0; $i < 2; $i++) :
+                    while ($ventures_query->have_posts()) : $ventures_query->the_post();
+                        $target_url = get_post_meta(get_the_ID(), '_venture_url', true) ?: '#';
+                        $logo_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                        if (!$logo_url) {
+                            // Fallback based on title for demo or placeholder
+                            $title = get_the_title();
+                            $slug = sanitize_title($title);
+                            if (strpos($slug, 'film') !== false) $text = 'Films';
+                            elseif (strpos($slug, 'wellness') !== false) $text = 'Wellness';
+                            else $text = 'Kyyba';
+                            $logo_url = "https://placehold.co/100x100?text=$text";
+                        }
+            ?>
+            <!-- Slide -->
             <div class="swiper-slide">
-              <a class="card" href="#" target="_blank" style="color:#fff;text-decoration: none; height: 100%;">
+              <a class="card" href="<?php echo esc_url($target_url); ?>" target="_blank" style="color:#fff;text-decoration: none; height: 100%;">
                 <div class="icon">
-                  <img src="https://placehold.co/100x100?text=Kyyba" alt="Kyyba Inc." style="width:100%;height:100%;object-fit:contain;" />
+                  <img src="<?php echo esc_url($logo_url); ?>" alt="<?php the_title_attribute(); ?>" style="width:100%;height:100%;object-fit:contain;" />
                 </div>
-                <h3>Kyyba, Inc.</h3>
-                <p>Global technology services & staffing delivering at scale.</p>
+                <h3><?php the_title(); ?></h3>
+                <p><?php echo get_the_excerpt(); ?></p>
                 <span class="link">Explore <i data-lucide="chevron-right"></i></span>
               </a>
             </div>
-            <!-- Card 2 -->
-            <div class="swiper-slide">
-              <a class="card" href="#" target="_blank" style="color:#fff;text-decoration: none; height: 100%;">
-                <div class="icon">
-                  <img src="https://placehold.co/100x100?text=Films" alt="Kyyba Films" style="width:100%;height:100%;object-fit:contain;" />
-                </div>
-                <h3>Kyyba Films</h3>
-                <p>Independent films that champion underrepresented voices.</p>
-                <span class="link">Explore <i data-lucide="chevron-right"></i></span>
-              </a>
-            </div>
-            <!-- Card 3 -->
-            <div class="swiper-slide">
-              <a class="card" href="#" target="_blank" style="color:#fff;text-decoration: none; height: 100%;">
-                <div class="icon">
-                  <img src="https://placehold.co/100x100?text=Wellness" alt="Kyyba Wellness" style="width:100%;height:100%;object-fit:contain;" />
-                </div>
-                <h3>Kyyba Wellness</h3>
-                <p>Programs for leaders and teams to perform sustainably.</p>
-                <span class="link">Explore <i data-lucide="chevron-right"></i></span>
-              </a>
-            </div>
-            <!-- Card 4 (Duplicate) -->
-            <div class="swiper-slide">
-              <a class="card" href="#" target="_blank" style="color:#fff;text-decoration: none; height: 100%;">
-                <div class="icon">
-                  <img src="https://placehold.co/100x100?text=Kyyba" alt="Kyyba Inc." style="width:100%;height:100%;object-fit:contain;" />
-                </div>
-                <h3>Kyyba, Inc.</h3>
-                <p>Global technology services & staffing delivering at scale.</p>
-                <span class="link">Explore <i data-lucide="chevron-right"></i></span>
-              </a>
-            </div>
-            <!-- Card 5 (Duplicate) -->
-            <div class="swiper-slide">
-              <a class="card" href="#" target="_blank" style="color:#fff;text-decoration: none; height: 100%;">
-                <div class="icon">
-                  <img src="https://placehold.co/100x100?text=Films" alt="Kyyba Films" style="width:100%;height:100%;object-fit:contain;" />
-                </div>
-                <h3>Kyyba Films</h3>
-                <p>Independent films that champion underrepresented voices.</p>
-                <span class="link">Explore <i data-lucide="chevron-right"></i></span>
-              </a>
-            </div>
-            <!-- Card 6 (Duplicate) -->
-            <div class="swiper-slide">
-              <a class="card" href="#" target="_blank" style="color:#fff;text-decoration: none; height: 100%;">
-                <div class="icon">
-                  <img src="https://placehold.co/100x100?text=Wellness" alt="Kyyba Wellness" style="width:100%;height:100%;object-fit:contain;" />
-                </div>
-                <h3>Kyyba Wellness</h3>
-                <p>Programs for leaders and teams to perform sustainably.</p>
-                <span class="link">Explore <i data-lucide="chevron-right"></i></span>
-              </a>
-            </div>
+            <?php 
+                    endwhile;
+                    $ventures_query->rewind_posts();
+                endfor;
+                wp_reset_postdata();
+            else :
+            ?>
+                <!-- Fallback if no ventures -->
+                <div class="swiper-slide"><div class="card"><p>No ventures found. Add via Admin.</p></div></div>
+            <?php endif; ?>
+
           </div>
           <div class="swiper-pagination"></div>
           <div class="swiper-button-prev"></div>

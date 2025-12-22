@@ -26,9 +26,8 @@ Version: 1.0
 
 html,
 body {
-  /* height: 100%; - Removed to allow natural flow */
-  /* overflow-x: hidden; - Removed to fix sticky scroll issues */
   width: 100%;
+  overflow-x: hidden;
 }
 
 body {
