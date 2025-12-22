@@ -1,8 +1,8 @@
 <?php
 // Function to enqueue scripts and styles
 function tek_k_ganeshan_scripts() {
-    // Styles
-    wp_enqueue_style( 'tek-k-ganeshan-style', get_stylesheet_uri(), array(), '1.57' );
+    // Enqueue Styles
+    wp_enqueue_style( 'tek-style', get_stylesheet_uri(), array(), '1.58' );
     // Swiper CSS
     wp_enqueue_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.0.0' );
 
