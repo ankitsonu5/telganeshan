@@ -55,8 +55,9 @@ get_header(); ?>
                             // Categories for display
                             $categories = get_the_category();
                             $cat_name = !empty($categories) ? $categories[0]->name : 'Uncategorized';
+                            $cat_slug = !empty($categories) ? $categories[0]->slug : 'uncategorized';
                     ?>
-                        <article class="blog-card">
+                        <article class="blog-card" data-category="<?php echo esc_attr($cat_slug); ?>">
                             <div class="blog-card__image">
                                 <?php if (has_post_thumbnail()) : ?>
                                     <?php the_post_thumbnail('medium'); ?>

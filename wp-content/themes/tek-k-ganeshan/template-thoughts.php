@@ -60,8 +60,9 @@ get_header(); ?>
                             // Get Thought Category
                             $terms = get_the_terms( get_the_ID(), 'thought_category' );
                             $cat_name = !empty($terms) && !is_wp_error($terms) ? $terms[0]->name : 'Thought';
+                            $cat_slug = !empty($terms) && !is_wp_error($terms) ? $terms[0]->slug : 'thought';
                     ?>
-                        <article class="blog-card post">
+                        <article class="blog-card post" data-category="<?php echo esc_attr($cat_slug); ?>">
                             <a href="<?php the_permalink(); ?>" class="post__media">
                                 <?php if (has_post_thumbnail()) : ?>
                                     <?php the_post_thumbnail('medium_large'); ?>

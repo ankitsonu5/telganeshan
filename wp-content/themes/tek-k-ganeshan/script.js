@@ -25,20 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Filter cards
         blogCards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+
           if (category === 'all') {
             card.style.display = '';
+          } else if (cardCategory === category) {
+            card.style.display = '';
           } else {
-            const cardCategory = card.querySelector('.blog-card__category, .post__category');
-            if (cardCategory) {
-              const cardCategoryText = cardCategory.textContent.toLowerCase().trim();
-              const filterCategoryText = category.toLowerCase().trim();
-
-              if (cardCategoryText === filterCategoryText || cardCategoryText.includes(filterCategoryText)) {
-                card.style.display = '';
-              } else {
-                card.style.display = 'none';
-              }
-            }
+            card.style.display = 'none';
           }
         });
       });
