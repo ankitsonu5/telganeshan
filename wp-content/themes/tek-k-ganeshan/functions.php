@@ -609,4 +609,37 @@ if (!function_exists('tek_get_video_thumbnail')) {
         return '';
     }
 }
+
+// Register Custom Post Type for Ventures
+function tek_register_ventures() {
+    $labels = array(
+        'name'               => 'Ventures',
+        'singular_name'      => 'Venture',
+        'menu_name'          => 'Ventures',
+        'add_new'            => 'Add New Venture',
+        'add_new_item'       => 'Add New Venture',
+        'edit_item'          => 'Edit Venture',
+        'new_item'           => 'New Venture',
+        'view_item'          => 'View Venture',
+        'search_items'       => 'Search Ventures',
+        'not_found'          => 'No ventures found',
+        'not_found_in_trash' => 'No ventures found in trash',
+    );
+
+    $args = array(
+        'labels'              => $labels,
+        'public'              => true,
+        'has_archive'         => false,
+        'publicly_queryable'  => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'menu_icon'           => 'dashicons-portfolio',
+        'menu_position'       => 5,
+        'supports'            => array('title', 'editor', 'thumbnail', 'custom-fields'),
+        'rewrite'             => array('slug' => 'venture'),
+    );
+
+    register_post_type('venture', $args);
+}
+add_action('init', 'tek_register_ventures');
 ?>

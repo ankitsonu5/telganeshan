@@ -22,66 +22,52 @@ get_header(); ?>
             
             <div class="row" style="row-gap: 60px;">
                 
-                <!-- Venture 1: Kyyba Inc -->
+                <?php
+                // Query ventures from custom post type
+                $ventures_query = new WP_Query(array(
+                    'post_type' => 'venture',
+                    'posts_per_page' => -1,
+                    'orderby' => 'date',
+                    'order' => 'ASC'
+                ));
+
+                if ($ventures_query->have_posts()) :
+                    while ($ventures_query->have_posts()) : $ventures_query->the_post();
+                        // Get custom field for website URL
+                        $website_url = get_post_meta(get_the_ID(), 'website_url', true);
+                ?>
+                
+                <!-- Venture: <?php the_title(); ?> -->
                 <div class="col-md-6">
                     <div class="venture-card">
                         <div class="venture-image-wrapper">
-                            <!-- Placeholder for Kyyba Image -->
-                             <img src="https://placehold.co/600x350/1a1a1a/fff?text=Kyyba+Inc" alt="Kyyba Inc" class="venture-img">
+                            <?php if (has_post_thumbnail()) : ?>
+                                <?php the_post_thumbnail('large', array('class' => 'venture-img')); ?>
+                            <?php else : ?>
+                                <img src="https://placehold.co/600x350/1a1a1a/fff?text=<?php echo urlencode(get_the_title()); ?>" alt="<?php the_title(); ?>" class="venture-img">
+                            <?php endif; ?>
                         </div>
                         <div class="venture-content">
-                            <a href="https://kyyba.com" target="_blank" class="venture-btn">www.kyyba.com</a>
-                            <h3>Kyyba Inc</h3>
-                            <p>Kyyba Inc, headquartered in Farmington Hills, Michigan, was established in 1998 catering to the workforce management and technology solution industries across the US. Now expanded to multiple locations across the globe, Kyyba Inc has over 1000 staff working in different capacities and leadership positions.</p>
-                            <p>Through the years, Kyyba has established itself as an IT solution provider, a job incubator, and as synchronized human resource management that supports and promotes talents.</p>
+                            <?php if ($website_url) : ?>
+                                <a href="<?php echo esc_url($website_url); ?>" target="_blank" class="venture-btn">
+                                    <?php echo esc_html(parse_url($website_url, PHP_URL_HOST)); ?>
+                                </a>
+                            <?php endif; ?>
+                            <h3><?php the_title(); ?></h3>
+                            <?php the_content(); ?>
                         </div>
                     </div>
                 </div>
 
-                <!-- Venture 2: Kyyba Innovations -->
-                <div class="col-md-6">
-                    <div class="venture-card">
-                        <div class="venture-image-wrapper">
-                             <img src="https://placehold.co/600x350/1a1a1a/fff?text=Kyyba+Innovations" alt="Kyyba Innovations" class="venture-img">
-                        </div>
-                        <div class="venture-content">
-                            <a href="https://kyybainnovations.com" target="_blank" class="venture-btn">www.kyybainnovations.com</a>
-                            <h3>Kyyba Innovations</h3>
-                            <p>Kyyba Innovations was started in 2017 and has since become a steppingstone for the next-gen entrepreneurs. It serves as a hub for entrepreneurs to innovate and bring their ideas to life while also aiding with investments and company expansion.</p>
-                            <p>Through smart investments, Kyyba acts as a bridge between challenges and solutions, paving the way for a changing global landscape.</p>
-                        </div>
+                <?php 
+                    endwhile;
+                    wp_reset_postdata();
+                else : 
+                ?>
+                    <div class="col-12">
+                        <p style="text-align: center; padding: 3rem 0;">No ventures found. Please add ventures from the WordPress admin.</p>
                     </div>
-                </div>
-
-                <!-- Venture 3: Kyyba Films -->
-                <div class="col-md-6">
-                    <div class="venture-card">
-                        <div class="venture-image-wrapper">
-                             <img src="https://placehold.co/600x350/1a1a1a/fff?text=Kyyba+Films" alt="Kyyba Films" class="venture-img">
-                        </div>
-                        <div class="venture-content">
-                            <a href="https://kyybafilms.com" target="_blank" class="venture-btn">www.kyybafilms.com</a>
-                            <h3>Kyyba Films</h3>
-                            <p>In 2017, Tel K. Ganesan and G.B Thimotheose established Kyyba Films, a production company in Michigan, with an aim to be the enabler of creating original feature films and documentaries. They focus on attending film festivals and collaborating with various artists around the world.</p>
-                            <p>Kyyba Films is also involved in co-productions, distribution, and film incubation. The founders are committed to offering support to enable good projects.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Venture 4: Kyyba Fashions -->
-                <div class="col-md-6">
-                    <div class="venture-card">
-                        <div class="venture-image-wrapper">
-                             <img src="https://placehold.co/600x350/1a1a1a/fff?text=Kyyba+Fashions" alt="Kyyba Fashions" class="venture-img">
-                        </div>
-                        <div class="venture-content">
-                            <a href="https://kyybafashions.com" target="_blank" class="venture-btn">www.kyybafashions.com</a>
-                            <h3>Kyyba Fashions</h3>
-                            <p>As his ties to the film business got stronger, Tel K. Ganesan's interest in fashion expanded as well. Film stars and other celebrities needed a complete makeover, including clothing, accessories, and styling. The team collaborated with the top designers and sought out the highest quality fabrics in vogue.</p>
-                            <p>The broad outcome of the case sparked a new line of business. The emphasis would always be on quality combined with current trends.</p>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?>
 
             </div>
 
