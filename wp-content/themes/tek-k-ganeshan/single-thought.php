@@ -40,6 +40,21 @@
                         <img src="<?php echo get_template_directory_uri(); ?>/img/005.jpg" alt="Article Hero Image" />
                     <?php endif; ?>
 
+                    <?php 
+                    // Display thought categories as badges
+                    $thought_terms = get_the_terms( get_the_ID(), 'thought_category' );
+                    if ($thought_terms && !is_wp_error($thought_terms)) :
+                    ?>
+                        <div style="display: flex; gap: 0.5rem; margin: 1.5rem 0; flex-wrap: wrap;">
+                            <?php foreach($thought_terms as $term) : ?>
+                                <a href="<?php echo esc_url(get_term_link($term)); ?>" 
+                                   style="padding: 0.4rem 0.8rem; border-radius: 6px; background: var(--accent); color: #000; font-size: 0.85rem; font-weight: 600; text-decoration: none; display: inline-block;">
+                                    <?php echo esc_html($term->name); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="entry-content">
                         <?php the_content(); ?>
                     </div>
