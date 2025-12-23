@@ -10,7 +10,7 @@ get_header(); ?>
         $bg_image = get_the_post_thumbnail_url( get_the_ID(), 'full' );
         if ( ! $bg_image ) {
             // Fallback image if no featured image
-            $bg_image = 'https://telkganesan.com/wp-content/uploads/2022/03/005.jpg';
+            $bg_image = 'https://telkganesan.com/wp-content/uploads/2022/03/005.webp';
         }
         ?>
         <section class="page-header page-header--bg"
