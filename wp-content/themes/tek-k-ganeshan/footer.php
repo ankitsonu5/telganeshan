@@ -8,7 +8,7 @@
         <h3>Tel K Ganesan</h3>
         <p>Founder • Investor • Producer</p>
         <p class="footer__desc">Operating at the intersection of technology, media and wellness. Relentlessly
-          execution‑focused, impact‑obsessed.</p>
+          execution‑focused, impact‑obsessed. </p>
         <div class="footer__socials">
           <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
           <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
