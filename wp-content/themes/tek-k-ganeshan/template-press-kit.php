@@ -71,6 +71,7 @@ get_header();
         </div>
     </section>
 
+
     <!-- 3. BRAND ASSETS (Photos) -->
     <section class="section pk-section" id="photos">
         <div class="content-wrapper" style="max-width: 1000px;">
@@ -79,66 +80,45 @@ get_header();
                 <p class="text-muted">High-resolution images for print and web.</p>
             </header>
 
-            <div class="assets-grid">
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
                 <!-- Image 1 -->
-                <div class="asset-item">
-                    <div class="asset-preview">
-                        <!-- Replace with actual dynamic field or static image -->
-                        <img src="https://telkganesan.com/wp-content/uploads/2022/03/004.jpg" alt="Tel K. Ganesan - Headshot" loading="lazy">
-                        <div class="asset-overlay">
-                            <a href="https://telkganesan.com/wp-content/uploads/2022/03/004.jpg" class="button button--white" download target="_blank">
-                                <i data-lucide="download"></i> JPG
-                            </a>
-                        </div>
-                    </div>
-                    <div class="asset-meta">
-                        <span>Headshot (Portrait)</span>
-                    </div>
+                <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                    <i data-lucide="image" style="width: 48px; height: 48px; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">Headshot (Portrait)</h4>
+                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;">High-res JPG</p>
+                    <a href="https://telkganesan.com/wp-content/uploads/2022/03/004.jpg" class="button button--sm button--outline" download target="_blank" style="width: 100%;">
+                        <i data-lucide="download"></i> Download
+                    </a>
                 </div>
 
                 <!-- Image 2 -->
-                <div class="asset-item">
-                    <div class="asset-preview">
-                        <img src="https://telkganesan.com/wp-content/uploads/2022/03/001.jpg" alt="Tel K. Ganesan - Speaking" loading="lazy">
-                        <div class="asset-overlay">
-                            <a href="https://telkganesan.com/wp-content/uploads/2022/03/001.jpg" class="button button--white" download target="_blank">
-                                <i data-lucide="download"></i> JPG
-                            </a>
-                        </div>
-                    </div>
-                    <div class="asset-meta">
-                        <span>Speaking Event</span>
-                    </div>
+                <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                    <i data-lucide="image" style="width: 48px; height: 48px; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">Speaking Event</h4>
+                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;">High-res JPG</p>
+                    <a href="https://telkganesan.com/wp-content/uploads/2022/03/001.jpg" class="button button--sm button--outline" download target="_blank" style="width: 100%;">
+                        <i data-lucide="download"></i> Download
+                    </a>
                 </div>
 
                 <!-- Image 3 -->
-                <div class="asset-item">
-                    <div class="asset-preview">
-                        <img src="https://telkganesan.com/wp-content/uploads/2022/03/005.jpg" alt="Tel K. Ganesan - Casual" loading="lazy">
-                        <div class="asset-overlay">
-                            <a href="https://telkganesan.com/wp-content/uploads/2022/03/005.jpg" class="button button--white" download target="_blank">
-                                <i data-lucide="download"></i> JPG
-                            </a>
-                        </div>
-                    </div>
-                    <div class="asset-meta">
-                        <span>Casual / Lifestyle</span>
-                    </div>
+                <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                    <i data-lucide="image" style="width: 48px; height: 48px; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">Casual / Lifestyle</h4>
+                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;">High-res JPG</p>
+                    <a href="https://telkganesan.com/wp-content/uploads/2022/03/005.jpg" class="button button--sm button--outline" download target="_blank" style="width: 100%;">
+                        <i data-lucide="download"></i> Download
+                    </a>
                 </div>
                 
                 <!-- Image 4 -->
-                <div class="asset-item">
-                    <div class="asset-preview">
-                        <img src="https://telkganesan.com/wp-content/uploads/2022/03/006.jpg" alt="Tel K. Ganesan - Awards" loading="lazy">
-                        <div class="asset-overlay">
-                            <a href="https://telkganesan.com/wp-content/uploads/2022/03/006.jpg" class="button button--white" download target="_blank">
-                                <i data-lucide="download"></i> JPG
-                            </a>
-                        </div>
-                    </div>
-                    <div class="asset-meta">
-                        <span>Awards / Formal</span>
-                    </div>
+                <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                    <i data-lucide="image" style="width: 48px; height: 48px; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">Awards / Formal</h4>
+                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;">High-res JPG</p>
+                    <a href="https://telkganesan.com/wp-content/uploads/2022/03/006.jpg" class="button button--sm button--outline" download target="_blank" style="width: 100%;">
+                        <i data-lucide="download"></i> Download
+                    </a>
                 </div>
             </div>
         </div>
