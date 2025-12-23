@@ -10,6 +10,42 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileNav.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', () => mobileNav.close()));
   }
 
+  // Category Filter for Blog/Thoughts
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const blogCards = document.querySelectorAll('.blog-card, .post');
+
+  if (filterBtns.length > 0 && blogCards.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category');
+
+        // Update active state
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter cards
+        blogCards.forEach(card => {
+          if (category === 'all') {
+            card.style.display = '';
+          } else {
+            const cardCategory = card.querySelector('.blog-card__category, .post__category');
+            if (cardCategory) {
+              const cardCategoryText = cardCategory.textContent.toLowerCase().trim();
+              const filterCategoryText = category.toLowerCase().trim();
+
+              if (cardCategoryText === filterCategoryText || cardCategoryText.includes(filterCategoryText)) {
+                card.style.display = '';
+              } else {
+                card.style.display = 'none';
+              }
+            }
+          }
+        });
+      });
+    });
+  }
+
+
   // Hero Slider
   if (typeof Swiper !== 'undefined') {
     const heroSlider = new Swiper('.hero-slider', {
