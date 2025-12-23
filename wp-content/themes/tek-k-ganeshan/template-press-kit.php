@@ -8,11 +8,12 @@ get_header();
 <main class="press-kit-page">
 
     <!-- 1. HERO SECTION -->
-    <section class="pk-hero" style="padding-top: 10rem; min-height: 70vh; display: flex; align-items: center;">
-        <div class="pk-hero__content" style="margin-top: 0;">
+    <section class="page-header page-header--bg"
+        style="background-image: url('https://telkganesan.com/wp-content/uploads/2022/03/005.jpg')">
+        <div class="page-header__content">
             <p class="kicker">Media Resources</p>
             <h1>Press Kit</h1>
-            <p class="pk-hero__desc">Official bios, high-resolution photos, and brand assets for media use. Please credit <strong>Tel K. Ganesan</strong> when using these materials.</p>
+            <p style="max-width: 600px; margin: 1rem auto 2rem; font-size: 1.1rem; opacity: 0.9;">Official bios, high-resolution photos, and brand assets for media use. Please credit <strong>Tel K. Ganesan</strong> when using these materials.</p>
             
             <div class="pk-hero__actions">
                 <a href="#" class="button button--primary" download>
@@ -22,10 +23,6 @@ get_header();
                     Media Contact <i data-lucide="arrow-down"></i>
                 </a>
             </div>
-        </div>
-        <div class="pk-hero__bg">
-             <!-- Abstract or subtle background -->
-             <div class="pk-gradient-orb"></div>
         </div>
     </section>
 
