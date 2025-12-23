@@ -22,11 +22,22 @@ get_header(); ?>
                 <!-- Filter/Category Bar -->
                 <div class="filter-bar">
                     <button class="filter-btn active" data-category="all">All Articles</button>
-                    <!-- In a real dynamic setup, these would be populated by get_categories() -->
-                    <button class="filter-btn" data-category="entrepreneurship">Entrepreneurship</button>
-                    <button class="filter-btn" data-category="technology">Technology</button>
-                    <button class="filter-btn" data-category="media">Media & Film</button>
-                    <button class="filter-btn" data-category="wellness">Wellness</button>
+                    <?php
+                    // Get all categories dynamically
+                    $categories = get_categories(array(
+                        'orderby' => 'name',
+                        'order'   => 'ASC',
+                        'hide_empty' => true, // Only show categories with posts
+                    ));
+                    
+                    foreach ($categories as $category) :
+                        // Skip 'Uncategorized' if you want
+                        if ($category->slug === 'uncategorized') continue;
+                    ?>
+                        <button class="filter-btn" data-category="<?php echo esc_attr($category->slug); ?>">
+                            <?php echo esc_html($category->name); ?>
+                        </button>
+                    <?php endforeach; ?>
                 </div>
 
                 <!-- Blog Grid -->
