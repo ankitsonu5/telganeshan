@@ -12,7 +12,7 @@ function tek_k_ganeshan_scripts() {
     // Lucide Icons
     wp_enqueue_script( 'lucide-js', 'https://unpkg.com/lucide@latest', array(), '1.0', true );
     // Theme JS
-    wp_enqueue_script( 'tek-k-ganeshan-script', get_template_directory_uri() . '/script.js', array('swiper-js'), '1.55', true );
+    wp_enqueue_script( 'tek-k-ganeshan-script', get_template_directory_uri() . '/script.js', array('swiper-js'), '1.60', true );
 }
 add_action( 'wp_enqueue_scripts', 'tek_k_ganeshan_scripts' );
 
