@@ -59,7 +59,7 @@
                         <h4>About the Author</h4>
                         <div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem;">
                             <!-- Hardcoded Author Image from design -->
-                            <img src="<?php echo get_template_directory_uri(); ?>/img/005.jpg"
+                            <img src="<?php echo get_template_directory_uri(); ?>/img/005.webp"
                                 alt="Tel K. Ganesan"
                                 style="width:60px; height:60px; border-radius:50%; object-fit:cover;">
                             <div>
