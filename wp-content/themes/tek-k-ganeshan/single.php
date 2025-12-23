@@ -39,6 +39,21 @@
                         <img src="<?php echo get_template_directory_uri(); ?>/img/005.jpg" alt="Article Hero Image" />
                     <?php endif; ?>
 
+                    <?php 
+                    // Display article categories as badges
+                    $article_categories = get_the_category();
+                    if ($article_categories && !empty($article_categories)) :
+                    ?>
+                        <div style="display: flex; gap: 0.5rem; margin: 1.5rem 0; flex-wrap: wrap;">
+                            <?php foreach($article_categories as $category) : ?>
+                                <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" 
+                                   style="padding: 0.4rem 0.8rem; border-radius: 6px; background: var(--accent); color: #000; font-size: 0.85rem; font-weight: 600; text-decoration: none; display: inline-block;">
+                                    <?php echo esc_html($category->name); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="entry-content">
                         <?php the_content(); ?>
                     </div>
