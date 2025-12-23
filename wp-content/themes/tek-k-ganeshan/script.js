@@ -275,24 +275,13 @@ if (typeof lucide !== 'undefined') {
   lucide.createIcons();
 }
 
-// Video Page Navbar Logic
+// Video Page Navbar Logic removed to enforce global solid header
+/* 
 const videoPage = document.querySelector('.videos-page');
 if (videoPage) {
-  const navbar = document.querySelector('header.nav');
-  if (navbar) {
-    navbar.classList.add('navbar--transparent');
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.remove('navbar--transparent');
-        navbar.classList.add('navbar--scrolled');
-      } else {
-        navbar.classList.add('navbar--transparent');
-        navbar.classList.remove('navbar--scrolled');
-      }
-    });
-  }
+  // ... removed ...
 }
+*/
 
 // Global Open Hero Video Function (Background Play)
 window.openHeroVideo = function (url) {
