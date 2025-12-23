@@ -124,36 +124,38 @@ get_header();
         </div>
     </section>
     
+    
     <!-- 4. LOGOS -->
     <section class="section pk-section" id="logos">
         <div class="content-wrapper" style="max-width: 1000px;">
             <header class="section__head">
                 <h2 class="h3">Company Logos</h2>
+                <p class="text-muted">Official brand logos for media use.</p>
             </header>
-            <div class="logos-grid">
-                <div class="logo-card">
-                    <img src="https://placehold.co/200x80?text=Kyyba+Inc" alt="Kyyba Inc Logo" class="logo-img">
-                    <div class="logo-actions">
-                        <a href="#" download>PNG</a>
-                        <span class="sep">•</span>
-                        <a href="#" download>SVG</a>
-                    </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                    <i data-lucide="file-image" style="width: 48px; height: 48px; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">Kyyba Inc</h4>
+                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;">PNG & SVG</p>
+                    <a href="#" class="button button--sm button--outline" download style="width: 100%;">
+                        <i data-lucide="download"></i> Download
+                    </a>
                 </div>
-                <div class="logo-card">
-                    <img src="https://placehold.co/200x80?text=Kyyba+Films" alt="Kyyba Films Logo" class="logo-img">
-                    <div class="logo-actions">
-                        <a href="#" download>PNG</a>
-                        <span class="sep">•</span>
-                        <a href="#" download>SVG</a>
-                    </div>
+                <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                    <i data-lucide="file-image" style="width: 48px; height: 48px; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">Kyyba Films</h4>
+                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;">PNG & SVG</p>
+                    <a href="#" class="button button--sm button--outline" download style="width: 100%;">
+                        <i data-lucide="download"></i> Download
+                    </a>
                 </div>
-                <div class="logo-card">
-                    <img src="https://placehold.co/200x80?text=Kyyba+Wellness" alt="Kyyba Wellness Logo" class="logo-img">
-                    <div class="logo-actions">
-                        <a href="#" download>PNG</a>
-                        <span class="sep">•</span>
-                        <a href="#" download>SVG</a>
-                    </div>
+                <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                    <i data-lucide="file-image" style="width: 48px; height: 48px; color: var(--accent); margin-bottom: 1rem;"></i>
+                    <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">Kyyba Wellness</h4>
+                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;">PNG & SVG</p>
+                    <a href="#" class="button button--sm button--outline" download style="width: 100%;">
+                        <i data-lucide="download"></i> Download
+                    </a>
                 </div>
             </div>
         </div>
