@@ -20,14 +20,28 @@ get_header(); ?>
         <section class="section">
             <div class="content-wrapper">
                 <!-- Filter/Category Bar -->
-                <!-- You can uncomment this if you have specific categories for Thoughts
                 <div class="filter-bar">
                     <button class="filter-btn active" data-category="all">All Thoughts</button>
-                    <button class="filter-btn" data-category="leadership">Leadership</button>
-                    <button class="filter-btn" data-category="mindset">Mindset</button>
-                    <button class="filter-btn" data-category="life">Life</button>
+                    <?php
+                    // Get all thought categories dynamically
+                    $thought_categories = get_terms(array(
+                        'taxonomy' => 'thought_category',
+                        'orderby' => 'name',
+                        'order'   => 'ASC',
+                        'hide_empty' => true, // Only show categories with posts
+                    ));
+                    
+                    if (!empty($thought_categories) && !is_wp_error($thought_categories)) :
+                        foreach ($thought_categories as $category) :
+                    ?>
+                        <button class="filter-btn" data-category="<?php echo esc_attr($category->slug); ?>">
+                            <?php echo esc_html($category->name); ?>
+                        </button>
+                    <?php 
+                        endforeach;
+                    endif;
+                    ?>
                 </div>
-                -->
 
                 <!-- Blog Grid -->
                 <div class="blog-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
