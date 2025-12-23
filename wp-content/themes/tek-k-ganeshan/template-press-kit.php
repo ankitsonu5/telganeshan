@@ -8,8 +8,8 @@ get_header();
 <main class="press-kit-page">
 
     <!-- 1. HERO SECTION -->
-    <section class="pk-hero">
-        <div class="pk-hero__content">
+    <section class="pk-hero" style="padding-top: 10rem; min-height: 70vh; display: flex; align-items: center;">
+        <div class="pk-hero__content" style="margin-top: 0;">
             <p class="kicker">Media Resources</p>
             <h1>Press Kit</h1>
             <p class="pk-hero__desc">Official bios, high-resolution photos, and brand assets for media use. Please credit <strong>Tel K. Ganesan</strong> when using these materials.</p>
