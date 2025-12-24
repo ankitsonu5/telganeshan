@@ -3240,7 +3240,7 @@ input[type="file"]::file-selector-button:hover {
 }
 
 .video-hero-title {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(2.5rem, 1rem);
   line-height: 1.1;
   font-weight: 800;
   margin-bottom: 1rem;
