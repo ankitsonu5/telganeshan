@@ -42,7 +42,7 @@ get_header();
             <div class="hero-type-tag">
                   Feature
             </div>
-            <h1 class="video-hero-title"><?php the_title(); ?></h1>
+            <h1><?php the_title(); ?></h1>
             <div class="video-hero-desc">
                 <?php echo get_the_excerpt(); ?>
             </div>
